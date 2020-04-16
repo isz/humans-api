@@ -3,12 +3,13 @@ from faker import Faker
 from random import randint
 import requests
 
-COUNT = 500
+COUNT = 500                         # count of data that will be generated
+API_URL = "http://127.0.0.1:8080"   # service URL
+
+
 AVATAR = "blue-simple-avatar.png"
 GENDERS = {"M": "male", "F": "female"}
-
-API_URL = "http://127.0.0.1:8080/api/human/"
-
+CREATE_URI = "/api/human/"
 
 def genarate_humans(faker):
     humans = []
@@ -40,4 +41,4 @@ if __name__ == "__main__":
     humans = genarate_humans(faker)
 
     for human in humans:
-        post_human(API_URL, human)
+        post_human(API_URL + CREATE_URI, human)
