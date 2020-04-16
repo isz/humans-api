@@ -1,0 +1,7 @@
+{
+    "restructuredtext.confPath": "",
+    "python.pythonPath": "/home/izvezdin/.local/share/virtualenvs/humans-api-GG2mAvMB/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black"
+}

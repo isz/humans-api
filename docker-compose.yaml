@@ -1,0 +1,49 @@
+version: "3"
+
+volumes:
+    humans_volume:
+    media_volume:
+    nginx_log_volume:
+
+
+services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+          POSTGRES_PASSWORD: postgres
+        volumes: 
+            - humans_volume:/var/lib/postgresql/data
+        ports: 
+            - 5432:5432
+        
+
+    humans_api:
+        build: ./
+        restart: always
+        environment:
+            SECRET_KEY: my_secret_key
+            DB_NAME: postgres
+            DB_USER: postgres
+            DB_PASSWORD: postgres
+            DB_HOST: db
+            DJANGO_SETTINGS_MODULE: humans_api.settings.production
+            ALLOWED_HOSTS: "localhost,127.0.0.1"
+        volumes:
+            - media_volume:/var/local/humans_api/media
+        ports:
+            - 8000:8000
+    
+    web:
+        image: nginx
+        volumes:
+            - ./nginx/humans_api.template:/etc/nginx/conf.d/humans_api.template
+            - media_volume:/var/local/humans_api/media
+            - nginx_log_volume:/var/log/nginx/
+        ports:
+            - "8080:80"
+        environment:
+            - NGINX_HOST=foobar.com
+            - NGINX_PORT=80
+        command: /bin/bash -c "envsubst < /etc/nginx/conf.d/humans_api.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+            

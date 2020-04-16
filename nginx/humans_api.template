@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name _;
+    error_log /var/log/nginx/error.log;
+    access_log /dev/null;
+ 
+    location /avatars/ {
+        root /var/local/humans_api/media/;
+        expires -1;
+    }
+ 
+    location /api/ {
+        proxy_set_header Host localhost;
+        proxy_redirect off;
+        proxy_pass http://humans_api:8000;
+    }
+}
