@@ -10,3 +10,6 @@ cd humans-api
 ./build.sh
 docker-compose up -d
 ```
+
+Сервис доступен по адресу
+http://127.0.0.1:8080/api/human/

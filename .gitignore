@@ -71,4 +71,6 @@ node_modules/
 humans-api/assets-src/vendor/
 .sass-cache/
 
+.vscode
+
 humans_api/media
