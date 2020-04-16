@@ -8,6 +8,7 @@ black = "*"
 pylint = "*"
 gunicorn = "*"
 faker = "*"
+requests = "*"
 
 [packages]
 django = "*"
