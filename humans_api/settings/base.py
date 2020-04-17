@@ -130,6 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+APPEND_SLASH = True
 
 # .local.py overrides all the common settings.
 try:

@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path(r"", views.MatchListView.as_view()),
-    path(r"<int:pk>", views.MatchView.as_view()),
+    path(r"<int:pk>/", views.MatchView.as_view()),
 ]
